@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+    color: aquamarine;
+}
+
+#root{
+    display: flex;
+    justify-content: center;
+}
+
+.App{
+    max-width: 1920px;
+}
+
+.terminal{
+    display: flex;
+    padding: 15px;
+    border: 2px solid aquamarine;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
