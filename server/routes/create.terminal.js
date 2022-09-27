@@ -37,16 +37,17 @@ router.post('/PlayerPasswordTerminalPage', async (req, res) => {
             (value) => value.title === commands
         )
 
-        const result = (secret, guess) => {
-            var bulls = 0;
-            var cows = 0;
-            var numbers = new Array(10);
-            for (var i=0; i<10; i++){
+        //числовой вариант
+        /* const result = (secret, guess) => {
+            let bulls = 0;
+            let cows = 0;
+            const numbers = new Array(10);
+            for (let i=0; i<10; i++){
               numbers[i] = 0;
             }
-            for (var i = 0; i<secret.length; i++) {
-              var s = secret.charCodeAt(i) - 48;
-              var g = guess.charCodeAt(i) - 48;
+            for (let i = 0; i<secret.length; i++) {
+              const s = secret.charCodeAt(i) - 48;
+              const g = guess.charCodeAt(i) - 48;
               if (s == g) bulls++;
               else {
                 if (numbers[s] < 0) cows++;
@@ -56,10 +57,31 @@ router.post('/PlayerPasswordTerminalPage', async (req, res) => {
               }
             }
             return bulls + "A" + cows + "B";
+        } */
+
+        const result = (secret, guess) => {
+            let bulls = 0
+            let cows = 0
+            const numbers = new Array(10)
+            for (let i=0; i<33; i++){
+              numbers[i] = 0
+            }
+            for (let i = 0; i<secret.length; i++) {
+              const s = secret.toLowerCase().charCodeAt(i) - 1072
+              const g = guess.toLowerCase().charCodeAt(i) - 1072
+              if (s == g) bulls++
+              else { 
+                if (numbers[s] < 0) cows++
+                if (numbers[g] > 0) cows++
+                numbers[s] ++
+                numbers[g] --
+              }
+            }
+            return bulls + " - Быки" + "\n" + cows + " - Коровы";
         }
 
-        console.log(result(command[0].password, guess))
         const resultGame = await result(command[0].password, guess)
+        console.log(resultGame)
         res.send({
             command, 
             resultGame
