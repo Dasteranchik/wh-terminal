@@ -14,3 +14,14 @@ export const addedTerminal = async (title, description, commands) => {
     
 
 }
+
+export const deletedTerminal = async (title) => {
+    try{
+        const response = await axios.post('http://localhost:5001/api/DeleteTerminal', {
+            title
+        })
+        alert(response.data.message)
+    } catch (e) {
+        alert (e)
+    }
+}

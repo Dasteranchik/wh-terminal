@@ -1,5 +1,6 @@
 import React from "react";
 import MyButton from "./UI/button/MyButton";
+import { deletedTerminal } from "./utils/input/input";
 
 
 const TerminalItem = (props) => {
@@ -24,7 +25,7 @@ const TerminalItem = (props) => {
             })}
             </div>
             <div className="post__btns">
-                <MyButton onClick = {() => props.remove(props.terminal)}>
+                <MyButton onClick = {() => deletedTerminal(props.terminal.title)}>
                     Удалить
                 </MyButton>
             </div>

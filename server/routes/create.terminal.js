@@ -95,11 +95,23 @@ router.post('/PlayerPasswordTerminalPage', async (req, res) => {
 router.post('/ReturnAllTerminals', async (req, res) => {
   try {
       const terminals = await Terminal.find()
-      console.log(terminals)
+      console.log("Терминалы выведены")
       return res.json(terminals)
   } catch (e) {
       console.log(e)
       res.send({message: "Server error"})        
+  }
+})
+
+router.post('/DeleteTerminal', async (req, res) => {
+  try {
+    const {title} = req.body
+    await Terminal.findOneAndDelete({ title: title })
+
+    return res.json({message: "Терминал удалён"})
+  } catch (e) {
+    console.log(e)
+    res.send({message: "Server error"})        
   }
 })
 
