@@ -27,14 +27,13 @@ const TerminalForm = ({create}) => {
         submitEl.current.click()
     }
 
-    /* function addNewTerminal (e) {
+    const removeCommand = (index, e) => {
         e.preventDefault()
-        const newTerminal ={
-            ...terminal, id:uuidv4()
-        }
-        create(newTerminal)
-        setTerminal({title:'', description:''})
-    } */
+        let data = [...commands];
+        data.splice(index, 1)
+        setCommmands(data)
+        submitEl.current.click()
+    }
 
     return (
         <form>
@@ -70,12 +69,13 @@ const TerminalForm = ({create}) => {
                             onChange = {e => handlerCommmands(index, e)}
                             type = "text" 
                             placeholder='Пароль'/>
+                        <MyButton onClick={e => removeCommand(index, e)}> Удалить команду </MyButton>
                     </div>
                 )
                 
             })}
             <MyButton onClick = {addComand} > Добавить команду </MyButton>
-            <MyButton onClick = {() => addedTerminal(terminal.title, terminal.description)} > Добавить терминал </MyButton> {/* addNewTerminal */}
+            <MyButton onClick = {() => addedTerminal(terminal.title, terminal.description, commands)} > Добавить терминал </MyButton> {/* addNewTerminal */}
         </form>
     )
 }
