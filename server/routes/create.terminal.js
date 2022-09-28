@@ -93,11 +93,10 @@ router.post('/PlayerPasswordTerminalPage', async (req, res) => {
 })
 
 router.post('/ReturnAllTerminals', async (req, res) => {
-
   try {
       const terminals = await Terminal.find()
       console.log(terminals)
-      return terminals;
+      return res.json(terminals)
   } catch (e) {
       console.log(e)
       res.send({message: "Server error"})        
