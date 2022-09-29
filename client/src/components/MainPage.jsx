@@ -3,12 +3,25 @@ import TerminalFilter from './TerminalFilter';
 import TerminalForm from './TerminalForm';
 import TerminalList from './TerminalList';
 import axios from 'axios';
+import MyButton from './UI/button/MyButton';
 //import './styles/App.css'
 
 function MainPage() {
   const [terminals, setTerminal] = useState([
-    { id: 1, title: 'JS1', description: 'DC1', commands: [{title: 'Какая-то команда', description: 'Описание ради описания', password: 'праоль'}, {title: 'Шарики-фонарики', description: 'Светят заебись', password: 'изподвыподверта'}] },
-    { id: 2, title: 'JS2', description: 'DC2', commands: [{title: 'qweqwe', description: 'ewe', password: 'dd'}] }
+    { id: '', 
+      title: '', 
+      description: '', 
+      commands: [{
+        title: '', 
+        description: '', 
+        password: '', 
+        commands: [{
+          title: '', 
+          description: '', 
+          password: ''
+        }]
+      }]
+    }
   ])
 
   const [filter, setFilter] = useState({sort: '', query: ''})
@@ -21,6 +34,10 @@ function MainPage() {
   }, [filter.sort, terminals])
 
   const sortedAndSearchedTerminals = useMemo(() => {
+    return sortedTerminals.filter(terminal => terminal.title.toLowerCase().includes(filter.query.toLowerCase()))
+  }, [filter.query, sortedTerminals])
+
+  const returnTerminals = (() => {
     const fetchData = async () => {
       const result = await axios.post(
         'http://localhost:5001/api/ReturnAllTerminals'
@@ -28,8 +45,9 @@ function MainPage() {
       setTerminal(result.data)
     };
     fetchData();
-    return sortedTerminals.filter(terminal => terminal.title.toLowerCase().includes(filter.query.toLowerCase()))
-  }, [filter.query, sortedTerminals])
+  }
+
+  )
 
   function createPost (newPost) {
     setTerminal([...terminals, newPost])
@@ -47,6 +65,7 @@ function MainPage() {
         filter = {filter}
         setFilter = {setFilter}
       />
+      <MyButton onClick = {returnTerminals} > Обновить </MyButton>
       {sortedAndSearchedTerminals.length !== 0
         ? <TerminalList remove = {removePost} terminals={sortedAndSearchedTerminals} title='Список терминалов' />
         : <h1 style = {{textAlign: 'center'}}>

@@ -1,15 +1,15 @@
 const {Schema, model, ObjectId} = require("mongoose")
 
 const SubCommand = new Schema({
-    title: {type: String, required: true},
-    description: {type: String, required: true},
-    password: {type: String, required: true}
+    title: {type: String},
+    description: {type: String},
+    password: {type: String}
 })
 
 const Command = new Schema({
-    title: {type: String, required: true},
-    description: {type: String, required: true},
-    password: {type: String, required: true},
+    title: {type: String},
+    description: {type: String},
+    password: {type: String},
     commands: [SubCommand]
 })
 

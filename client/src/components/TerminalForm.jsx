@@ -9,7 +9,7 @@ const TerminalForm = ({create}) => {
     const submitEl = useRef(null);
     const [terminal, setTerminal] = useState({title: '', description: ''})
     const [commands, setCommmands] = useState([
-        {title: '', description: '', password: ''}
+        {title: '', description: '', password: '', commands: [{title: '', description: '', password: '', commands: []}]}
     ])
 
     const handlerCommmands = (index, e) => {
@@ -21,7 +21,7 @@ const TerminalForm = ({create}) => {
     const addComand = (e) => {
         e.preventDefault()
         
-        let newCommand = {title: '', description: '', password: ''}
+        let newCommand = {title: '', description: '', password: '', commands: []}
 
         setCommmands([...commands, newCommand])
         submitEl.current.click()
@@ -31,6 +31,23 @@ const TerminalForm = ({create}) => {
         e.preventDefault()
         let data = [...commands];
         data.splice(index, 1)
+        setCommmands(data)
+        submitEl.current.click()
+    }
+
+    const addSubComand = (index, e) => {
+        e.preventDefault()
+        
+        let data = [...commands];
+        data[index].commands.push({title: '', description: '', password: ''})
+        setCommmands(data);
+        submitEl.current.click()
+    }
+
+    const removeSubCommand = (index, e) => {
+        e.preventDefault()
+        let data = [...commands];
+        data[index].commands.splice(index, 1)
         setCommmands(data)
         submitEl.current.click()
     }
@@ -70,6 +87,32 @@ const TerminalForm = ({create}) => {
                             type = "text" 
                             placeholder='Пароль'/>
                         <MyButton onClick={e => removeCommand(index, e)}> Удалить команду </MyButton>
+                        {input.commands.map((input, index) => {
+                            return(
+                                <div key = {index}>
+                                    <hr style = {{margin: '10px 0'}}/>
+                                    <MyInput 
+                                        name = "title"
+                                        value = {input.title}
+                                        
+                                        type = "text" 
+                                        placeholder='Наименование команды'/>
+                                    <MyInput 
+                                        name = "description"
+                                        value = {input.description}
+                                        type = "text" 
+                                        placeholder='Информация по команде'/>
+                                    <MyInput
+                                        name = "password"
+                                        value = {input.password}
+                                        type = "text" 
+                                        placeholder='Пароль'/>
+                                        <MyButton onClick={e => removeSubCommand(index, e)}> Удалить Сабкоманду </MyButton>
+                                </div>
+                            )
+                            
+                        })}
+                        <MyButton onClick = {e => addSubComand(index, e)} > Добавить Сабкоманду </MyButton>
                     </div>
                 )
                 
