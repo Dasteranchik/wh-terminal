@@ -61,10 +61,10 @@ function MainPage() {
     <div className = "MainPage">
       <TerminalForm create = {createPost}/>
       <hr style = {{margin: '15px 0'}}/>
-      <TerminalFilter
+      {/* <TerminalFilter
         filter = {filter}
         setFilter = {setFilter}
-      />
+      /> */}
       <MyButton onClick = {returnTerminals} > Обновить </MyButton>
       {sortedAndSearchedTerminals.length !== 0
         ? <TerminalList remove = {removePost} terminals={sortedAndSearchedTerminals} title='Список терминалов' />

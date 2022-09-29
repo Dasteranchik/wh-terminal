@@ -89,19 +89,19 @@ const TerminalForm = ({create}) => {
                         <MyButton onClick={e => removeCommand(index, e)}> Удалить команду </MyButton>
                         {input.commands.map((input, index) => {
                             return(
-                                <div key = {index}>
+                                <div style ={{marginLeft: '50px'}} key = {index}>
                                     <hr style = {{margin: '10px 0'}}/>
                                     <MyInput 
                                         name = "title"
                                         value = {input.title}
                                         
                                         type = "text" 
-                                        placeholder='Наименование команды'/>
+                                        placeholder='Наименование Сабкоманды'/>
                                     <MyInput 
                                         name = "description"
                                         value = {input.description}
                                         type = "text" 
-                                        placeholder='Информация по команде'/>
+                                        placeholder='Информация по Сабкоманде'/>
                                     <MyInput
                                         name = "password"
                                         value = {input.password}

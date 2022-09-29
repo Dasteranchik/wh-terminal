@@ -14,15 +14,26 @@ const TerminalItem = (props) => {
                     {props.terminal.description}
                 </div>
                 {props.terminal.commands.map((input, index) => {
-                return(
-                    <div key = {index}>
-                        <hr style = {{margin: '10px 0'}}/>
-                        Название команды: {input.title} <br/>
-                        Описание команды: {input.description}<br/>
-                        Пароль: {input.password}<br/>
-                    </div>
-                )
-            })}
+                    return(
+                        <div key = {index}>
+                            <hr style = {{margin: '10px 0'}}/>
+                            Название команды: {input.title} <br/>
+                            Описание команды: {input.description}<br/>
+                            Пароль: {input.password}<br/>
+                            {input.commands.map((input, index) => {
+                            return(
+                                <div style ={{marginLeft: '50px'}} key = {index}>
+                                    <hr style = {{margin: '10px 0'}}/>
+                                    Название субкоманды: {input.title} <br/>
+                                    Описание субкоманды: {input.description}<br/>
+                                    Пароль: {input.password}<br/>
+                                </div>
+                            )}
+                            
+                        )}
+                        </div>
+                    )}
+                )}
             </div>
             <div className="post__btns">
                 <MyButton onClick = {() => deletedTerminal(props.terminal.title)}>
