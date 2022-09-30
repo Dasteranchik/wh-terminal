@@ -6,7 +6,7 @@ import { MainPage } from './components/MainPage';
 import { PlayerStartedTerminalPage } from './components/PlayerStartedTerminalPage'
 import { PlayerPasswordTerminalPage } from './components/PlayerPasswordTerminalPage'
 import { AdminCreateTerminalPage } from './components/AdminCreateTerminalPage'
-import { PlayerHackerTerminalPage } from './components/PlayerHackerTerminalPage';
+import { TerminalCommand } from './components/TerminalCommand';
 import MyButton from './components/UI/button/MyButton';
 
 function App() {
@@ -16,14 +16,14 @@ function App() {
         <MyButton> <Link to = "/">Home </Link> </MyButton>
         {/* <MyButton> <Link to ='/PlayerStartedTerminalPage'>PlayerStartedTerminalPage </Link> </MyButton> */}
         <MyButton> <Link to ='/PlayerPasswordTerminalPage'>PlayerPasswordTerminalPage </Link> </MyButton>
-        <MyButton> <Link to ='/PlayerHackerTerminalPage'>PlayerHackerTerminalPage </Link> </MyButton>
+        <MyButton> <Link to ='/TerminalCommand'>TerminalCommand </Link> </MyButton>
         <MyButton> <Link to ='/AdminCreateTerminalPage'>AdminCreateTerminalPage </Link> </MyButton>
       </header>
       <Routes>
         <Route path='/' element = {<MainPage/>} />
         <Route path='/PlayerStartedTerminalPage/:title' element = {<PlayerStartedTerminalPage />} />
-        <Route path='/PlayerPasswordTerminalPage' element = {<PlayerPasswordTerminalPage />} />
-        <Route path='/PlayerHackerTerminalPage' element = {<PlayerHackerTerminalPage />} />
+        <Route path='/PlayerStartedTerminalPage/:title/PlayerPasswordTerminalPage/:command:title' element = {<PlayerPasswordTerminalPage />} />
+        <Route path='/PlayerStartedTerminalPage/:title/TerminalCommand/:command:title' element = {<TerminalCommand />} />
         <Route path='/AdminCreateTerminalPage' element = {<AdminCreateTerminalPage />} />
       </Routes>
     </div>

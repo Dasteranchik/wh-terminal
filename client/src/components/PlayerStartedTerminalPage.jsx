@@ -1,6 +1,8 @@
 import { useParams, useLocation } from "react-router";
+import { Routes, Route, Link} from 'react-router-dom'
 import React, {useState} from "react";
 import MyInput from "./UI/input/MyInput";
+import MyButton from './UI/button/MyButton';
 
 const PlayerStartedTerminalPage = () => {
     const [commandPlayer, setCommandPlayer] = useState({title : ''});
@@ -20,11 +22,13 @@ const PlayerStartedTerminalPage = () => {
             return(
                 <div key = {index}>
                     {input.title} <br/>
+                    <MyButton> <Link to ={'/PlayerStartedTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + input.title} state={[{ command: input, terminal: terminal.title }]}> Открыть </Link> </MyButton>
                 </div>
             )
         })}
         <hr style = {{margin: '10px 0'}}/>
         <strong>Введите команду:</strong>
+        
         <MyInput
             name = "commandPlayer"
             value = {commandPlayer.title}
@@ -32,6 +36,7 @@ const PlayerStartedTerminalPage = () => {
             type = "text" 
             placeholder='Наименование команды'/>
         </div>
+        
     )
 }
 
