@@ -34,7 +34,7 @@ const PlayerPasswordTerminalPage = () => {
             let result = {bulls: bulls, cows: cows}
 
             if(command.password.length === bulls) {
-                navigate('/PlayerStartedTerminalPage/'+ terminal +'/TerminalCommand/' + command.title, {state: {command: command}})
+                navigate('/PlayerTerminalPage/'+ terminal +'/TerminalCommand/' + command.title, {state: {command: command}})
             }
             setBullsCows(result)
         }

@@ -2,7 +2,7 @@ import React from "react";
 import MyButton from "./UI/button/MyButton";
 import { Routes, Route, Link} from 'react-router-dom'
 import { deletedTerminal } from "./utils/input/input";
-import { PlayerStartedTerminalPage } from "./PlayerStartedTerminalPage";
+import { PlayerTerminalPage } from "./PlayerTerminalPage";
 
 const TerminalItem = (props) => {
 
@@ -39,9 +39,9 @@ const TerminalItem = (props) => {
                 <MyButton onClick = {() => deletedTerminal(props.terminal.title)}>
                     Удалить
                 </MyButton>
-                <MyButton> <Link to ={'/PlayerStartedTerminalPage/' + props.terminal.title} state={{ terminal: props.terminal }}> Открыть </Link> </MyButton>
+                <MyButton> <Link to ={'/PlayerTerminalPage/' + props.terminal.title} state={{ terminal: props.terminal }}> Открыть </Link> </MyButton>
                 <Routes>
-                    <Route path='/PlayerStartedTerminalPage/:title' element = {<PlayerStartedTerminalPage />} />
+                    <Route path='/PlayerTerminalPage/:title' element = {<PlayerTerminalPage />} />
                 </Routes>
             </div>
             
