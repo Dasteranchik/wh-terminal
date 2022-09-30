@@ -7,6 +7,7 @@ import { PlayerTerminalPage } from './components/PlayerTerminalPage'
 import { PlayerPasswordTerminalPage } from './components/PlayerPasswordTerminalPage'
 import { AdminCreateTerminalPage } from './components/AdminCreateTerminalPage'
 import { TerminalCommand } from './components/TerminalCommand';
+import { TerminalSubCommand } from './components/TerminalSubCommand';
 import MyButton from './components/UI/button/MyButton';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/PlayerTerminalPage/:title' element = {<PlayerTerminalPage />} />
         <Route path='/PlayerTerminalPage/:title/PlayerPasswordTerminalPage/:command:title' element = {<PlayerPasswordTerminalPage />} />
         <Route path='/PlayerTerminalPage/:title/TerminalCommand/:command:title' element = {<TerminalCommand />} />
+        <Route path='/PlayerTerminalPage/:title/TerminalCommand/:command:title/TerminalSubCommand/:subCommand:title' element = {<TerminalSubCommand />} />
         <Route path='/AdminCreateTerminalPage' element = {<AdminCreateTerminalPage />} />
       </Routes>
     </div>

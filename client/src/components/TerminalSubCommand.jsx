@@ -5,11 +5,11 @@ import MyButton from "./UI/button/MyButton"
 import MyInput from "./UI/input/MyInput"
 
 
-const TerminalCommand = () => {
+const TerminalSubCommand = () => {
     const [subCommandPlayer, setSubCommandPlayer] = useState({title : ''});
 
     const location = useLocation()
-    const command = location.state.command
+    const command = location.state.subCommand
     const terminal = location.state.terminal
     const navigate = useNavigate()
     
@@ -17,7 +17,7 @@ const TerminalCommand = () => {
         if (e.charCode === 13) {
             terminal.commands.forEach((e) => {
                 if(e.title === subCommandPlayer.title) {
-                   navigate('/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + e.title , {state: [{ command: e, terminal: terminal.title }]})
+                    navigate('/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + e.title, {state: [{ command: e, terminal: terminal.title }]})
                 }
             })
         }
@@ -53,4 +53,4 @@ const TerminalCommand = () => {
     )
 }
 
-export {TerminalCommand};
+export {TerminalSubCommand};

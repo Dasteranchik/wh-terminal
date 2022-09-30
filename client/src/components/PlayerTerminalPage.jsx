@@ -16,7 +16,9 @@ const PlayerTerminalPage = () => {
         if (e.charCode === 13) {
             terminal.commands.forEach((e) => {
                 if(e.title === commandPlayer.title) {
-                    navigate('/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + e.title, {state: [{ command: e, terminal: terminal.title }]})
+                    e.password ?
+                    navigate('/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + e.title, {state: [{ command: e, terminal: terminal.title }]}):
+                    navigate('/PlayerTerminalPage/'+ terminal.title +'/TerminalCommand/' + e.title, {state: {command: e, terminal: terminal.title}})
                 }
             })
         }
