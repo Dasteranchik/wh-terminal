@@ -1,15 +1,13 @@
-import { useParams, useLocation, useNavigate } from "react-router";
-import { Routes, Route, Link} from 'react-router-dom'
+import { useLocation, useNavigate } from "react-router";
+import { Link} from 'react-router-dom'
 import React, {useState} from "react";
 import MyInput from "./UI/input/MyInput";
 import MyButton from './UI/button/MyButton';
 
 const PlayerTerminalPage = () => {
     const [commandPlayer, setCommandPlayer] = useState({title : ''});
-    const params = useParams()
     const location = useLocation()
     const terminal = location.state.terminal
-    const title = params.title
     const navigate = useNavigate()
 
     const onKeyPress = e => {
