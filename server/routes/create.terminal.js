@@ -103,6 +103,17 @@ router.post('/ReturnAllTerminals', async (req, res) => {
   }
 })
 
+router.post('/ReturnFindOneTerminal', async (req, res) => {
+  try {
+    const {title} = req.body
+    const terminal = await Terminal.findOne({ title: title })
+    return res.json(terminal)
+  } catch (e) {
+    console.log(e)
+    res.send({message: "Server error"})        
+  }
+})
+
 router.post('/DeleteTerminal', async (req, res) => {
   try {
     const {title} = req.body
