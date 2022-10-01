@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState} from "react";
 //import {v4 as uuidv4} from 'uuid';
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
@@ -6,7 +6,6 @@ import { addedTerminal } from "./utils/input/input";
 
 const TerminalForm = ({create}) => {
 
-    const submitEl = useRef(null);
     const [terminal, setTerminal] = useState({title: '', description: ''})
     const [commands, setCommmands] = useState([
         {title: '', description: '', password: '', commands: [{title: '', description: '', password: '', commands: []}]}

@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import TerminalFilter from './TerminalFilter';
 import TerminalForm from './TerminalForm';
 import TerminalList from './TerminalList';
 import axios from 'axios';
