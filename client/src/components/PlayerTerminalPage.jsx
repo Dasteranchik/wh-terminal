@@ -3,7 +3,6 @@ import { Link} from 'react-router-dom'
 import React, {useState, useEffect} from "react";
 import MyInput from "./UI/input/MyInput";
 import MyButton from './UI/button/MyButton';
-import { getTerminal } from "./utils/input/input";
 import axios from "axios";
 
 const PlayerTerminalPage = () => {

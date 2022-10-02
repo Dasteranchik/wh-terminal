@@ -2,8 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { useLocation } from "react-router";
 import MyInput from "./UI/input/MyInput";
-import axios from 'axios';
-import { getTerminal } from './utils/input/input';
 
 const PlayerPasswordTerminalPage = () => {
     const [playerPassword, setPlayerPassword] = useState({password:''})
