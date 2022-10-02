@@ -3,9 +3,6 @@ const {Schema, model, ObjectId} = require("mongoose")
 const SubCommand = new Schema({
     title: {type: String},
     description: {type: String},
-    password: {type: String},
-    hackingCommand: {type: String},
-    flagPassword: {type: Boolean},
     flag: {type: Boolean}
 })
 

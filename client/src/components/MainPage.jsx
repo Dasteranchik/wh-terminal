@@ -19,10 +19,7 @@ function MainPage() {
         flag: Boolean,
         commands: [{
           title: '', 
-          description: '', 
-          password: '',
-          hackingCommand: '',
-          flagPassword: Boolean,
+          description: '',
           flag: Boolean
         }]
       }]

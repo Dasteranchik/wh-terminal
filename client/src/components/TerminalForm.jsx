@@ -8,7 +8,7 @@ const TerminalForm = ({create}) => {
 
     const [terminal, setTerminal] = useState({title: '', description: ''})
     const [commands, setCommmands] = useState([
-        {title: '', description: '', password: '', commands: [{title: '', description: '', password: ''}]}
+        {title: '', description: '', password: '', commands: [{title: '', description: '', flag: false}]}
     ])
 
     const handlerCommmands = (index, e) => {
@@ -104,13 +104,6 @@ const TerminalForm = ({create}) => {
                                         onChange = {e => handlerSubCommmands(index, subIndex, e)}
                                         type = "text" 
                                         placeholder='Информация по Сабкоманде'/>
-                                    <MyInput
-                                        name = "password"
-                                        value = {subInput.password}
-                                        onChange = {e => handlerSubCommmands(index, subIndex, e)}
-                                        type = "text" 
-                                        placeholder='Пароль'/>
-                                        <MyButton onClick={e => removeSubCommand(index, subIndex, e)}> Удалить Сабкоманду </MyButton>
                                 </div>
                             )
                             

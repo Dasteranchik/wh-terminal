@@ -13,9 +13,9 @@ const TerminalCommand = () => {
     
     const onKeyPress = e => {
         if (e.charCode === 13) {
-            terminal.commands.forEach((e) => {
+            command.commands.forEach((e) => {
                 if(e.title === subCommandPlayer.title) {
-                   navigate('/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + e.title , {state: [{ command: e, terminal: terminal.title }]})
+                navigate('/PlayerTerminalPage/'+ terminal +'/TerminalCommand/' + command.title + '/TerminalSubCommand/' + e.title, {state: [{ command: e, terminal: terminal }]})
                 }
             })
             if (subCommandPlayer.title === 'назад' ) navigate(-1)
