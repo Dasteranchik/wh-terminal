@@ -87,6 +87,12 @@ const TerminalForm = ({create}) => {
                             onChange = {e => handlerCommmands(index, e)}
                             type = "text" 
                             placeholder='Пароль'/>
+                            <MyInput
+                            name = "hackingCommand"
+                            value = {input.hackingCommand}
+                            onChange = {e => handlerCommmands(index, e)}
+                            type = "text" 
+                            placeholder='Пароль для взлома'/>
                         <MyButton onClick={e => removeCommand(index, e)}> Удалить команду </MyButton>
                         {input.commands.map((subInput, subIndex) => {
                             return(
@@ -104,6 +110,10 @@ const TerminalForm = ({create}) => {
                                         onChange = {e => handlerSubCommmands(index, subIndex, e)}
                                         type = "text" 
                                         placeholder='Информация по Сабкоманде'/>
+                                    <p><input 
+                                        name="dzen" 
+                                        type="checkbox" 
+                                        value="flag"/> Кнопка активности</p>
                                     <MyButton onClick={e => removeSubCommand(index, subIndex, e)}> Удалить Сабкоманду </MyButton>
                                 </div>
                             )

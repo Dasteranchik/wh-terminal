@@ -38,6 +38,8 @@ const TerminalCommand = () => {
                     </div>
                 )
             })}
+            Меню<br/>
+            Назад
             <hr style = {{margin: '10px 0'}}/>
             <strong>Введите команду:</strong>
             

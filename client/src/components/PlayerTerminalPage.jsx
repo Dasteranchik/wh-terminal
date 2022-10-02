@@ -19,7 +19,7 @@ const PlayerTerminalPage = () => {
     const onKeyPress = e => {
         if (e.charCode === 13) {
             for(let i = 0; i < terminal.commands.length; i++) {
-                if(terminal.commands[i].title === commandPlayer.title) {
+                if(terminal.commands[i].title.toLowerCase() === commandPlayer.title.toLowerCase()) {
                   terminal.commands[i].password ?
                     navigate('/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + terminal.commands[i].title, {state: [{ command: terminal.commands[i], terminal: terminal.title, commandNumber: i }]}):
                     navigate('/PlayerTerminalPage/'+ terminal.title +'/TerminalCommand/' + terminal.commands[i].title, {state: {command: terminal.commands[i], terminal: terminal.title, commandNumber: i}})

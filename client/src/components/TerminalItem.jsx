@@ -20,13 +20,14 @@ const TerminalItem = (props) => {
                             Название команды: {input.title} <br/>
                             Описание команды: {input.description}<br/>
                             Пароль: {input.password}<br/>
+                            Пароль для хакера: {input.hackingCommand}
                             {input.commands.map((input, index) => {
                             return(
                                 <div style ={{marginLeft: '50px'}} key = {index}>
                                     <hr style = {{margin: '10px 0'}}/>
                                     Название субкоманды: {input.title} <br/>
                                     Описание субкоманды: {input.description}<br/>
-                                    Пароль: {input.password}<br/>
+                                    Флаг: {input.flag ? 'Вкл' : 'Выкл'}
                                 </div>
                             )}
                             

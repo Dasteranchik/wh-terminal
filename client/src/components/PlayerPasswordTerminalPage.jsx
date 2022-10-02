@@ -36,7 +36,10 @@ const PlayerPasswordTerminalPage = () => {
         <div>
             <strong>{command.title}</strong><br/>
             Заблокировано <br/>
-            Введите пароль
+            Введите пароль <br/>
+            <hr style = {{margin: '10px 0'}}/>
+            <strong>Доступные команды:</strong><br/>
+            Назад
             <MyInput
             name = "password"
             value = {playerPassword.title}
