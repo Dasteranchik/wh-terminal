@@ -41,7 +41,6 @@ const PlayerTerminalPage = () => {
             return(
                 <div key = {index}>
                     {input.title} <br/>
-                    <MyButton> <Link to ={'/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + input.title} state={[{ command: input, terminal: terminal.title }]}> Открыть </Link> </MyButton>
                 </div>
             )
         })}

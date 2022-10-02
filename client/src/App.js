@@ -15,7 +15,6 @@ function App() {
   return (
     <div className = "App">
       <header>
-        <MyButton> <Link to = "/">Home </Link> </MyButton>
       </header>
       <Routes>
         <Route path='/' element = {<MainPage/>} />
