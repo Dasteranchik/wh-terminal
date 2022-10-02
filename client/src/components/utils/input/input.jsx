@@ -11,8 +11,6 @@ export const addedTerminal = async (title, description, commands) => {
     } catch (e) {
         alert (e)
     }
-    
-
 }
 
 export const deletedTerminal = async (title) => {
@@ -21,6 +19,17 @@ export const deletedTerminal = async (title) => {
             title
         })
         alert(response.data.message)
+    } catch (e) {
+        alert (e)
+    }
+}
+
+export const getTerminal = async (title) => {
+    try{
+        const response = await axios.post('http://localhost:5001/api/ReturnFindOneTerminal', {
+            title
+        })
+        return response.data
     } catch (e) {
         alert (e)
     }

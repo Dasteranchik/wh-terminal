@@ -18,6 +18,7 @@ const TerminalCommand = () => {
                    navigate('/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + e.title , {state: [{ command: e, terminal: terminal.title }]})
                 }
             })
+            if (subCommandPlayer.title === 'назад' ) navigate(-1)
         }
     }
 

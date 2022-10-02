@@ -107,6 +107,7 @@ router.post('/ReturnFindOneTerminal', async (req, res) => {
   try {
     const {title} = req.body
     const terminal = await Terminal.findOne({ title: title })
+    console.log("Терминал пришёл", terminal)
     return res.json(terminal)
   } catch (e) {
     console.log(e)

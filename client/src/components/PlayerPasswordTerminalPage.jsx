@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { useLocation } from "react-router";
 import MyInput from "./UI/input/MyInput";
+import axios from 'axios';
+import { getTerminal } from './utils/input/input';
 
 const PlayerPasswordTerminalPage = () => {
-    const [bullsCows, setBullsCows] = useState({bulls:0, cows:0})
     const [playerPassword, setPlayerPassword] = useState({password:''})
+    
     const location = useLocation()
     const command = location.state[0].command
     const terminal = location.state[0].terminal
@@ -13,37 +15,28 @@ const PlayerPasswordTerminalPage = () => {
 
     const onKeyPress = e => {
         if (e.charCode === 13) {
-            let bulls = 0
-            let cows = 0
-            const numbers = new Array(10)
-            for (let i=0; i<33; i++){
-              numbers[i] = 0
-            }
-            for (let i = 0; i<command.password.length; i++) {
-              const s = command.password.toLowerCase().charCodeAt(i) - 1072
-              const g = playerPassword.title.toLowerCase().charCodeAt(i) - 1072
-              if (s === g) bulls++
-              else { 
-                if (numbers[s] < 0) cows++
-                if (numbers[g] > 0) cows++
-                numbers[s] ++
-                numbers[g] --
-              }
-            }
-            let result = {bulls: bulls, cows: cows}
-
-            if(command.password.length === bulls) {
-                navigate('/PlayerTerminalPage/'+ terminal +'/TerminalCommand/' + command.title, {state: {command: command, terminal: terminal.title}})
-            }
-            setBullsCows(result)
+          switch(playerPassword.title.toLowerCase()) {
+            case 'назад':
+              navigate(-1)
+              break
+            case 'меню':
+              navigate('/PlayerTerminalPage/'+ terminal)
+              break
+            case command.password :
+              navigate('/PlayerTerminalPage/'+ terminal +'/TerminalCommand/' + command.title, {state: {command: command, terminal: terminal.title}})
+              break
+            case command.hackingCommand :
+              navigate('/PlayerTerminalPage/'+ terminal +'/PlayerHackerTerminalPage/' + command.title, {state: {command: command, terminal: terminal}})
+              break
+            default:
+          }
         }
     }
 
     return(
         <div>
             <strong>{command.title}</strong><br/>
-            Осуществляется взлом <br/>
-            <text> Игрок, который начинает игру по жребию, делает первую попытку отгадать число. Попытка — это 4-значное число с неповторяющимися цифрами, сообщаемое противнику. Противник сообщает в ответ, сколько цифр угадано без совпадения с их позициями в тайном числе (то есть количество коров) и сколько угадано вплоть до позиции в тайном числе (то есть количество быков).</text><br/>
+            Заблокировано <br/>
             Введите пароль
             <MyInput
             name = "password"
@@ -51,8 +44,7 @@ const PlayerPasswordTerminalPage = () => {
             onChange = {e => setPlayerPassword({...playerPassword, title: e.target.value})}
             onKeyPress = {onKeyPress}
             type = "text" 
-            placeholder='Пароль'/>
-            Быки: {bullsCows.bulls} Коровы:{bullsCows.cows} 
+            placeholder='Команда'/>
         </div>
     )
 }

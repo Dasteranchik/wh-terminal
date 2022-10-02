@@ -14,10 +14,16 @@ function MainPage() {
         title: '', 
         description: '', 
         password: '', 
+        hackingCommand: '',
+        flagPassword: Boolean,
+        flag: Boolean,
         commands: [{
           title: '', 
           description: '', 
-          password: ''
+          password: '',
+          hackingCommand: '',
+          flagPassword: Boolean,
+          flag: Boolean
         }]
       }]
     }

@@ -9,21 +9,19 @@ import { AdminCreateTerminalPage } from './components/AdminCreateTerminalPage'
 import { TerminalCommand } from './components/TerminalCommand';
 import { TerminalSubCommand } from './components/TerminalSubCommand';
 import MyButton from './components/UI/button/MyButton';
+import { PlayerHackerTerminalPage } from './components/PlayerHackerTerminalPage';
 
 function App() {
   return (
     <div className = "App">
       <header>
         <MyButton> <Link to = "/">Home </Link> </MyButton>
-        {/* <MyButton> <Link to ='/PlayerTerminalPage'>PlayerTerminalPage </Link> </MyButton> */}
-        <MyButton> <Link to ='/PlayerPasswordTerminalPage'>PlayerPasswordTerminalPage </Link> </MyButton>
-        <MyButton> <Link to ='/TerminalCommand'>TerminalCommand </Link> </MyButton>
-        <MyButton> <Link to ='/AdminCreateTerminalPage'>AdminCreateTerminalPage </Link> </MyButton>
       </header>
       <Routes>
         <Route path='/' element = {<MainPage/>} />
         <Route path='/PlayerTerminalPage/:title' element = {<PlayerTerminalPage />} />
         <Route path='/PlayerTerminalPage/:title/PlayerPasswordTerminalPage/:command:title' element = {<PlayerPasswordTerminalPage />} />
+        <Route path='/PlayerTerminalPage/:title/PlayerHackerTerminalPage/:command:title' element = {<PlayerHackerTerminalPage />} />
         <Route path='/PlayerTerminalPage/:title/TerminalCommand/:command:title' element = {<TerminalCommand />} />
         <Route path='/PlayerTerminalPage/:title/TerminalCommand/:command:title/TerminalSubCommand/:subCommand:title' element = {<TerminalSubCommand />} />
         <Route path='/AdminCreateTerminalPage' element = {<AdminCreateTerminalPage />} />

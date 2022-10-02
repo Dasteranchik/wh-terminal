@@ -8,7 +8,7 @@ const TerminalForm = ({create}) => {
 
     const [terminal, setTerminal] = useState({title: '', description: ''})
     const [commands, setCommmands] = useState([
-        {title: '', description: '', password: '', commands: [{title: '', description: '', password: '', commands: []}]}
+        {title: '', description: '', password: '', commands: [{title: '', description: '', password: ''}]}
     ])
 
     const handlerCommmands = (index, e) => {

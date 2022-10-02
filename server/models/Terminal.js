@@ -4,6 +4,8 @@ const SubCommand = new Schema({
     title: {type: String},
     description: {type: String},
     password: {type: String},
+    hackingCommand: {type: String},
+    flagPassword: {type: Boolean},
     flag: {type: Boolean}
 })
 
@@ -12,6 +14,8 @@ const Command = new Schema({
     description: {type: String},
     password: {type: String},
     commands: [SubCommand],
+    hackingCommand: {type: String},
+    flagPassword: {type: Boolean},
     flag: {type: Boolean}
 })
 

@@ -1,14 +1,21 @@
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { Link} from 'react-router-dom'
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import MyInput from "./UI/input/MyInput";
 import MyButton from './UI/button/MyButton';
+import { getTerminal } from "./utils/input/input";
+import axios from "axios";
 
 const PlayerTerminalPage = () => {
     const [commandPlayer, setCommandPlayer] = useState({title : ''});
-    const location = useLocation()
-    const terminal = location.state.terminal
+    const [terminal, setTerminal] = useState(null)
     const navigate = useNavigate()
+
+    useEffect(() => {
+      axios.post('http://localhost:5001/api/ReturnFindOneTerminal', {
+        title: decodeURI(window.location.href.split('Page/')[1])
+      }).then(response => setTerminal(response.data))
+    }, []); 
 
     const onKeyPress = e => {
         if (e.charCode === 13) {
@@ -22,7 +29,8 @@ const PlayerTerminalPage = () => {
         }
     }
 
-    return(
+
+     return ( terminal ?
         <div className="post__content">
             <strong>{terminal.title}</strong>
             <div>
@@ -48,9 +56,10 @@ const PlayerTerminalPage = () => {
             onKeyPress = {onKeyPress}
             type = "text" 
             placeholder='Наименование команды'/>
+        </div>:
+        <div>
+            Загрузка
         </div>
-        
     )
 }
-
 export {PlayerTerminalPage};
