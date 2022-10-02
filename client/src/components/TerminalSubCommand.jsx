@@ -1,16 +1,25 @@
-import { useState } from "react"
+import axios from "axios";
+import { useState, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router"
 import MyInput from "./UI/input/MyInput"
 
 
 const TerminalSubCommand = () => {
     const [subCommandPlayer, setSubCommandPlayer] = useState({title : ''});
+    const [playerFlag, setPlayerFlag] = useState({title : false});
 
     const location = useLocation()
+    const subCommand = location.state[0].subCommand
     const command = location.state[0].command
     const terminal = location.state[0].terminal
+    const commandNumber = location.state[0].commandNumber
+    const subCommandNumber = location.state[0].subCommandNumber
     const navigate = useNavigate()
-    
+
+    useEffect(() => {
+        setPlayerFlag(subCommand.flag)
+      }, []); 
+
     const onKeyPress = e => {
         if (e.charCode === 13) {
             switch(subCommandPlayer.title.toLowerCase()) {
@@ -21,7 +30,12 @@ const TerminalSubCommand = () => {
                   navigate('/PlayerTerminalPage/'+ terminal)
                   break
                 case 'переключить статус' :
-                    command.state = !command.state
+                    setPlayerFlag(!playerFlag)
+                    axios.post('http://localhost:5001/api/ChangeTerminalFlag', {
+                        title: terminal,
+                        command: commandNumber,
+                        subCommand: subCommandNumber
+                    })
                   break
                 default:
               }
@@ -30,12 +44,12 @@ const TerminalSubCommand = () => {
 
     return(
         <div>
-            <strong>{command.title}</strong>
+            <strong>{subCommand.title}</strong>
             <strong>Доступ разрешён</strong>
             <div>
-                {command.description}
+                {subCommand.description}
             </div>
-            <strong>Текущий статус: {command.flag? <div> Вкл</div> : <div> Выкл</div>}</strong>
+            <strong>Текущий статус: {playerFlag ? <div> Вкл</div> : <div> Выкл</div>}</strong>
             <hr style = {{margin: '10px 0'}}/>
             <strong>Доступные команды:</strong><br/>
             Переключить статус<br/>

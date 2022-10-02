@@ -9,15 +9,16 @@ const TerminalCommand = () => {
     const location = useLocation()
     const command = location.state.command
     const terminal = location.state.terminal
+    const commandNumber = location.state.commandNumber
     const navigate = useNavigate()
     
     const onKeyPress = e => {
         if (e.charCode === 13) {
-            command.commands.forEach((e) => {
-                if(e.title === subCommandPlayer.title) {
-                navigate('/PlayerTerminalPage/'+ terminal +'/TerminalCommand/' + command.title + '/TerminalSubCommand/' + e.title, {state: [{ command: e, terminal: terminal }]})
+            for (let i = 0; i < command.commands.length; i++){
+                if(command.commands[i].title.toLowerCase() === subCommandPlayer.title.toLowerCase()) {
+                navigate('/PlayerTerminalPage/'+ terminal +'/TerminalCommand/' + command.title + '/TerminalSubCommand/' + command.commands[i].title, {state: [{ subCommand: command.commands[i], command: command.title, terminal: terminal, commandNumber : commandNumber, subCommandNumber: i}]})
                 }
-            })
+            }
             if (subCommandPlayer.title === 'назад' ) navigate(-1)
         }
     }
@@ -34,7 +35,6 @@ const TerminalCommand = () => {
                 return(
                     <div key = {index}>
                         {input.title} <br/>
-                        {/* <MyButton> <Link to ={'/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + input.title} state={[{ command: input, terminal: terminal.title }]}> Открыть </Link> </MyButton> */}
                     </div>
                 )
             })}

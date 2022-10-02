@@ -9,6 +9,7 @@ const PlayerPasswordTerminalPage = () => {
     const location = useLocation()
     const command = location.state[0].command
     const terminal = location.state[0].terminal
+    const commandNumber = location.state[0].commandNumber
     const navigate = useNavigate()
 
     const onKeyPress = e => {
@@ -21,10 +22,10 @@ const PlayerPasswordTerminalPage = () => {
               navigate('/PlayerTerminalPage/'+ terminal)
               break
             case command.password :
-              navigate('/PlayerTerminalPage/'+ terminal +'/TerminalCommand/' + command.title, {state: {command: command, terminal: terminal}})
+              navigate('/PlayerTerminalPage/'+ terminal +'/TerminalCommand/' + command.title, {state: {command: command, terminal: terminal, commandNumber: commandNumber}})
               break
             case command.hackingCommand :
-              navigate('/PlayerTerminalPage/'+ terminal +'/PlayerHackerTerminalPage/' + command.title, {state: {command: command, terminal: terminal}})
+              navigate('/PlayerTerminalPage/'+ terminal +'/PlayerHackerTerminalPage/' + command.title, {state: {command: command, terminal: terminal, commandNumber: commandNumber}})
               break
             default:
           }

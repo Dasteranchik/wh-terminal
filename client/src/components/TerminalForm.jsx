@@ -104,6 +104,7 @@ const TerminalForm = ({create}) => {
                                         onChange = {e => handlerSubCommmands(index, subIndex, e)}
                                         type = "text" 
                                         placeholder='Информация по Сабкоманде'/>
+                                    <MyButton onClick={e => removeSubCommand(index, subIndex, e)}> Удалить Сабкоманду </MyButton>
                                 </div>
                             )
                             

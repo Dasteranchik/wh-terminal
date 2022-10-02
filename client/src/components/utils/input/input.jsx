@@ -27,7 +27,7 @@ export const deletedTerminal = async (title) => {
 export const getTerminal = async (title) => {
     try{
         const response = await axios.post('http://localhost:5001/api/ReturnFindOneTerminal', {
-            title
+            title: title
         })
         return response.data
     } catch (e) {

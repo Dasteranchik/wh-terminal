@@ -18,13 +18,13 @@ const PlayerTerminalPage = () => {
 
     const onKeyPress = e => {
         if (e.charCode === 13) {
-            terminal.commands.forEach((e) => {
-                if(e.title === commandPlayer.title) {
-                    e.password ?
-                    navigate('/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + e.title, {state: [{ command: e, terminal: terminal.title }]}):
-                    navigate('/PlayerTerminalPage/'+ terminal.title +'/TerminalCommand/' + e.title, {state: {command: e, terminal: terminal.title}})
+            for(let i = 0; i < terminal.commands.length; i++) {
+                if(terminal.commands[i].title === commandPlayer.title) {
+                  terminal.commands[i].password ?
+                    navigate('/PlayerTerminalPage/' + terminal.title + '/PlayerPasswordTerminalPage/' + terminal.commands[i].title, {state: [{ command: terminal.commands[i], terminal: terminal.title, commandNumber: i }]}):
+                    navigate('/PlayerTerminalPage/'+ terminal.title +'/TerminalCommand/' + terminal.commands[i].title, {state: {command: terminal.commands[i], terminal: terminal.title, commandNumber: i}})
                 }
-            })
+            }
         }
     }
 

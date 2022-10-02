@@ -127,4 +127,24 @@ router.post('/DeleteTerminal', async (req, res) => {
   }
 })
 
+router.post('/ChangeTerminalFlag', async (req, res) => {
+  try {
+    const {title, command, subCommand} = req.body
+    let terminal = await Terminal.findOne({ title: title })
+
+    terminal.commands[command].commands[subCommand].flag = !terminal.commands[command].commands[subCommand].flag
+
+    console.log(terminal.commands[command].commands[subCommand].flag)
+
+    await terminal.save(title)
+
+    console.log('Терминал обновлён')
+    return res.json({message: "Терминал обновлён"})
+  } catch (e) {
+    console.log(e)
+    console.log('Терминал не обновлён, ошибка')
+    res.send({message: "Server error"})        
+  }
+})
+
 module.exports = router
