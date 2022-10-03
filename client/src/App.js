@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Link} from 'react-router-dom'
+import { Routes, Route} from 'react-router-dom'
 import './styles/App.css'
 
 import { MainPage } from './components/MainPage';
@@ -8,8 +8,8 @@ import { PlayerPasswordTerminalPage } from './components/PlayerPasswordTerminalP
 import { AdminCreateTerminalPage } from './components/AdminCreateTerminalPage'
 import { TerminalCommand } from './components/TerminalCommand';
 import { TerminalSubCommand } from './components/TerminalSubCommand';
-import MyButton from './components/UI/button/MyButton';
 import { PlayerHackerTerminalPage } from './components/PlayerHackerTerminalPage';
+import { AdminEditTerminalPage } from './components/AdminEditTerminalPage';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element = {<MainPage/>} />
         <Route path='/PlayerTerminalPage/:title' element = {<PlayerTerminalPage />} />
+        <Route path='/AdminEditTerminalPage/:title' element = {<AdminEditTerminalPage />} />
         <Route path='/PlayerTerminalPage/:title/PlayerPasswordTerminalPage/:command:title' element = {<PlayerPasswordTerminalPage />} />
         <Route path='/PlayerTerminalPage/:title/PlayerHackerTerminalPage/:command:title' element = {<PlayerHackerTerminalPage />} />
         <Route path='/PlayerTerminalPage/:title/TerminalCommand/:command:title' element = {<TerminalCommand />} />

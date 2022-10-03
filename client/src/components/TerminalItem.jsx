@@ -41,6 +41,7 @@ const TerminalItem = (props) => {
                     Удалить
                 </MyButton>
                 <MyButton> <Link to ={'/PlayerTerminalPage/' + props.terminal.title} state={{ terminal: props.terminal }}> Открыть </Link> </MyButton>
+                <MyButton> <Link to ={'/AdminEditTerminalPage/' + props.terminal.title} state={{ terminal: props.terminal }}> Редактировать </Link> </MyButton>
                 <Routes>
                     <Route path='/PlayerTerminalPage/:title' element = {<PlayerTerminalPage />} />
                 </Routes>

@@ -18,7 +18,7 @@ const Command = new Schema({
 
 const Terminal = new Schema({
     title: {type: String, required: true},
-    description: {type: String, required: true},
+    description: {type: String},
     commands: [Command]
 })
 

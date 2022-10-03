@@ -28,6 +28,22 @@ router.post('/AdminCreateTerminalPage',
     }
 })
 
+router.post('/AdminEditTerminalPage', 
+    
+
+    async (req, res) => {
+    try {
+        const {terminals} = req.body
+
+        const terminal = new Terminal(terminals)
+        await Terminal.deleteOne({ title: terminals.title })
+        await terminal.save()
+    } catch (e) {
+        console.log(e)
+        res.send({message: "Server error"})
+    }
+})
+
 router.post('/PlayerPasswordTerminalPage', async (req, res) => {
 
     try {
@@ -107,7 +123,7 @@ router.post('/ReturnFindOneTerminal', async (req, res) => {
   try {
     const {title} = req.body
     const terminal = await Terminal.findOne({ title: title })
-    console.log("Терминал пришёл", terminal)
+    console.log("Терминал пришёл")
     return res.json(terminal)
   } catch (e) {
     console.log(e)

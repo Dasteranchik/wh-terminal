@@ -1,15 +1,23 @@
-import React, {useState} from "react";
-//import {v4 as uuidv4} from 'uuid';
+import { useNavigate } from "react-router";
+import React, {useState, useEffect} from "react";
 import MyInput from "./UI/input/MyInput";
-import MyButton from "./UI/button/MyButton";
-import { addedTerminal } from "./utils/input/input";
+import MyButton from './UI/button/MyButton';
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-const TerminalForm = ({create}) => {
+const AdminEditTerminalPage = () => {
+    const [terminal, setTerminal] = useState(null)
+    const [commands, setCommands] = useState(null)
+    const navigate = useNavigate()
 
-    const [terminal, setTerminal] = useState({title: '', description: ''})
-    const [commands, setCommands] = useState([
-        {title: '', description: '', password: '', commands: [{title: '', description: '', flag: false}]}
-    ])
+    useEffect(() => {
+      axios.post('http://localhost:5001/api/ReturnFindOneTerminal', {
+        title: decodeURI(window.location.href.split('Page/')[1])
+      }).then(response => setTerminal(response.data))
+      axios.post('http://localhost:5001/api/ReturnFindOneTerminal', {
+        title: decodeURI(window.location.href.split('Page/')[1])
+      }).then(response => setCommands(response.data.commands))
+    }, []); 
 
     const handlerCommmands = (index, e) => {
         let data = [...commands];
@@ -53,7 +61,15 @@ const TerminalForm = ({create}) => {
         setCommands(data)
     }
 
-    return (
+    const editTerminal = async () => {
+        terminal.commands = commands
+        axios.post('http://localhost:5001/api/AdminEditTerminalPage', {
+        terminals: terminal
+        })
+        navigate(-1)
+    }
+
+    return ( terminal ?
         <form>
             <MyInput 
                 value = {terminal.title}
@@ -125,9 +141,13 @@ const TerminalForm = ({create}) => {
                 
             })}
             <MyButton onClick = {addComand} > Добавить команду </MyButton>
-            <MyButton onClick = {() => addedTerminal(terminal.title, terminal.description, commands)} > Добавить терминал </MyButton> {/* addNewTerminal */}
-        </form>
+            <hr style = {{margin: '10px 0'}}/>
+            <MyButton onClick = {() => editTerminal()} > Сохранить изменения </MyButton>
+        </form> :
+        <div>
+            Терминал сохранён<br/>
+            <MyButton onClick = {() => navigate(-1)} > Назад </MyButton><br/>
+        </div>
     )
 }
-
-export default TerminalForm;
+export {AdminEditTerminalPage};
