@@ -8,7 +8,7 @@ const TerminalForm = ({create}) => {
 
     const [terminal, setTerminal] = useState({title: '', description: ''})
     const [commands, setCommands] = useState([
-        {title: '', description: '', password: '', commands: [{title: '', description: '', flag: false}]}
+        {title: '', description: '', password: '', commands: [{title: '', description: '', flag: Boolean(false)}]}
     ])
 
     const handlerCommmands = (index, e) => {
@@ -19,7 +19,13 @@ const TerminalForm = ({create}) => {
 
     const handlerSubCommmands = (index, subIndex, e) => {
         let data = [...commands];
-        data[index].commands[subIndex][e.target.name] = e.target.value;
+        data[index].commands[subIndex][e.target.name] = (e.target.value === 'true');
+        setCommands(data);
+    }
+
+    const handlerSubCommmandsFlag = (index, subIndex, e) => {
+        let data = [...commands];
+        data[index].commands[subIndex][e.target.name] = !data[index].commands[subIndex][e.target.name];
         setCommands(data);
     }
 
@@ -110,10 +116,12 @@ const TerminalForm = ({create}) => {
                                         onChange = {e => handlerSubCommmands(index, subIndex, e)}
                                         type = "text" 
                                         placeholder='Информация по Сабкоманде'/>
-                                    <p><input 
-                                        name="dzen" 
+                                    <input 
+                                        name="flag" 
                                         type="checkbox" 
-                                        value="flag"/> Кнопка активности</p>
+                                        value = {subInput.flag}
+                                        onChange = {e => handlerSubCommmandsFlag(index, subIndex, e)}
+                                        label='Кнопка активности'/> Кнопка активности <br/>
                                     <MyButton onClick={e => removeSubCommand(index, subIndex, e)}> Удалить Сабкоманду </MyButton>
                                 </div>
                             )
