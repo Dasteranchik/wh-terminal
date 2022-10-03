@@ -19,7 +19,7 @@ const TerminalForm = ({create}) => {
 
     const handlerSubCommmands = (index, subIndex, e) => {
         let data = [...commands];
-        data[index].commands[subIndex][e.target.name] = (e.target.value === 'true');
+        data[index].commands[subIndex][e.target.name] = e.target.value;
         setCommands(data);
     }
 
