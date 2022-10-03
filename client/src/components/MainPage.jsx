@@ -3,7 +3,6 @@ import TerminalForm from './TerminalForm';
 import TerminalList from './TerminalList';
 import axios from 'axios';
 import MyButton from './UI/button/MyButton';
-//import './styles/App.css'
 
 function MainPage() {
   const [terminals, setTerminal] = useState([

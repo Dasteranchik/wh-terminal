@@ -26,10 +26,7 @@ const start = async () => {
     }catch(err) {
         console.log("Возникла ошибка");
         console.log(err);
-    } /* finally {
-        await mongoose.disconnect();
-        console.log("Подключение закрыто");
-    } */
+    }
 }
 
 start()
