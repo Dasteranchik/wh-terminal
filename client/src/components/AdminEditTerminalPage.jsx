@@ -3,7 +3,6 @@ import React, {useState, useEffect} from "react";
 import MyInput from "./UI/input/MyInput";
 import MyButton from './UI/button/MyButton';
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const AdminEditTerminalPage = () => {
     const [terminal, setTerminal] = useState(null)

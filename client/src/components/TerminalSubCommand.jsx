@@ -10,7 +10,6 @@ const TerminalSubCommand = () => {
 
     const location = useLocation()
     const subCommand = location.state[0].subCommand
-    const command = location.state[0].command
     const terminal = location.state[0].terminal
     const commandNumber = location.state[0].commandNumber
     const subCommandNumber = location.state[0].subCommandNumber
