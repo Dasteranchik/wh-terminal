@@ -3,6 +3,7 @@ import TerminalForm from './TerminalForm';
 import TerminalList from './TerminalList';
 import axios from 'axios';
 import MyButton from './UI/button/MyButton';
+import { URL_LOCALHOST } from '../utils/constants';
 
 function MainPage() {
   const [terminals, setTerminal] = useState([
@@ -27,6 +28,8 @@ function MainPage() {
 
   const [filter, setFilter] = useState({sort: '', query: ''})
 
+  const url = URL_LOCALHOST
+
   const sortedTerminals = useMemo( () => {
     if(filter.sort){
       return [...terminals].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
@@ -41,7 +44,7 @@ function MainPage() {
   const returnTerminals = (() => {
     const fetchData = async () => {
       const result = await axios.post(
-        'http://localhost:5001/api/ReturnAllTerminals'
+        url + '/api/ReturnAllTerminals'
       )
       setTerminal(result.data)
     };
@@ -57,6 +60,8 @@ function MainPage() {
   function removePost (terminal) {
     setTerminal(terminals.filter(p => p.id !== terminal.id))
   }
+
+  
 
   return (
     <div className = "MainPage">

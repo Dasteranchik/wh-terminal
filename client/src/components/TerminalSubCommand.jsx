@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router"
+import { URL_LOCALHOST } from "../utils/constants";
 import MyInput from "./UI/input/MyInput"
 
 
@@ -14,6 +15,7 @@ const TerminalSubCommand = () => {
     const commandNumber = location.state[0].commandNumber
     const subCommandNumber = location.state[0].subCommandNumber
     const navigate = useNavigate()
+    const url = URL_LOCALHOST
 
     useEffect(() => {
         setPlayerFlag(subCommand.flag)
@@ -30,7 +32,7 @@ const TerminalSubCommand = () => {
                   break
                 case 'переключить статус' :
                     setPlayerFlag(!playerFlag)
-                    axios.post('http://localhost:5001/api/ChangeTerminalFlag', {
+                    axios.post(url + '/api/ChangeTerminalFlag', {
                         title: terminal,
                         command: commandNumber,
                         subCommand: subCommandNumber

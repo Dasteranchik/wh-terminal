@@ -2,14 +2,16 @@ import { useNavigate } from "react-router";
 import React, {useState, useEffect} from "react";
 import MyInput from "./UI/input/MyInput";
 import axios from "axios";
+import { URL_LOCALHOST } from "../utils/constants";
 
 const PlayerTerminalPage = () => {
     const [commandPlayer, setCommandPlayer] = useState({title : ''});
     const [terminal, setTerminal] = useState(null)
     const navigate = useNavigate()
+    const url = URL_LOCALHOST
 
     useEffect(() => {
-      axios.post('http://localhost:5001/api/ReturnFindOneTerminal', {
+      axios.post(url + '/api/ReturnFindOneTerminal', {
         title: decodeURI(window.location.href.split('Page/')[1])
       }).then(response => setTerminal(response.data))
     }, []); 
