@@ -70,6 +70,12 @@ const AdminEditTerminalPage = () => {
         navigate(-1)
     }
 
+    const handlerSubCommmandsFlag = (index, subIndex, e) => {
+        let data = [...commands];
+        data[index].commands[subIndex][e.target.name] = !data[index].commands[subIndex][e.target.name];
+        setCommands(data);
+    }
+
     return ( terminal ?
         <form>
             <MyInput 
@@ -127,10 +133,13 @@ const AdminEditTerminalPage = () => {
                                         onChange = {e => handlerSubCommmands(index, subIndex, e)}
                                         type = "text" 
                                         placeholder='Информация по Сабкоманде'/>
-                                    <p><input 
-                                        name="dzen" 
+                                    <input 
+                                        name="flag" 
                                         type="checkbox" 
-                                        value="flag"/> Кнопка активности</p>
+                                        value = {subInput.flag}
+                                        checked={subInput.flag}
+                                        onChange = {e => handlerSubCommmandsFlag(index, subIndex, e)}
+                                        label='Кнопка активности'/> Кнопка активности <br/>
                                     <MyButton onClick={e => removeSubCommand(index, subIndex, e)}> Удалить Сабкоманду </MyButton>
                                 </div>
                             )
